@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="description" content="Your Website Your menu Article title Posted on Mon Dec 31 12:28:55 2012 by Author Name" />
+	
+	<title>Node.js + Connect (connect-router, connect-mongo) + NowJS Test</title>
+	
+	<link rel="shortcut icon" href="/favicon.png" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	<link rel="author" href="https://plus.google.com/u/110713646341961256563/about" />
+	
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+	
+	<!-- In <head> -->
+	<script>(function(w,d,u){w.readyQ=[];w.bindReadyQ=[];function p(x,y){if(x=="ready"){w.bindReadyQ.push(y);}else{w.readyQ.push(x);}};var a={ready:p,bind:p};w.$=w.jQuery=function(f){if(f===d||f===u){return a}else{p(f)}}})(window,document)</script>
+</head>
+
+<body>
+	<header>
+		<h2>Node.js + Connect (connect-router, connect-mongo) + NowJS Test</h2>
+	</header>
+	
+	<section>
+		<article>
+			<header>
+				<p>Message:</p>
+			</header>
+			<div id="msg"></div>
+			<div id="stat"></div>
+		</article>
+	</section>
+
+	<aside>
+		<h2>Type message here</h2>
+		<p>
+			<input type="text" id="text-input"> 
+			<input type="button" value="Send" id="send-button">
+		</p>
+	</aside>
+
+	<footer>
+		<p>Copyright 2012 sikancil</p>
+	</footer>
+	
+	<script>
+		$(document).bind("ready", function () {
+			console.log("Example D: $(document).bind(\"ready\", handler)");
+		});
+		$(document).ready(function () {
+			console.log("Example A: $(document).ready(handler)");
+			
+			now.name = prompt('What is your name: ', '');
+			now.receiveMsg = function(msgObj){
+				tmp =	'<div id="stream" tag="2013.01.01_12.42.50_000001">' +
+							'<div id="msgText">' + msgObj.pesan + '</div>' +
+							'<div id="msgStat"><em>Posted on <time datetime="2009-09-04T16:31:24+02:00">September 4th 2009</time> by <a id="usr" href="#">' + msgObj.nama + '</a></em></div>' +
+						'</div>';
+				$('#msg').html( $('#msg').html() + "\n" + tmp );
+				/*
+				$('<p></p>').html(
+					msgObj.pesan + ' ' +
+					'<div>Posted on <time datetime="2009-09-04T16:31:24+02:00">September 4th 2009</time> by <a id="usr" href="#">' + msgObj.nama + '</a></div>'
+				).appendTo('#msg');
+				*/
+				$('#stat').html('<strong>Total:</strong> ' + $('#msg > #stream').length + ' stream(s).');
+			}
+			
+			$('#send-button').click(function(){
+				now.distributeMsg($('#text-input').val());
+				$('#text-input').val('');
+			});
+		});
+		$().ready(function () {
+			console.log("Example B: $().ready(handler)");
+		});
+		$(function(){
+			console.log("Example C: $(handler)");
+		});
+	</script>	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js?ver=3.5"></script>
+	<script type="text/javascript" src="http://192.168.0.102:8899/nowjs/now.js"></script>
+	<!-- In <body> (just after jQuery) -->
+	<script>(function($,d){$.each(readyQ,function(i,f){$(f)});$.each(bindReadyQ,function(i,f){$(d).bind("ready",f)})})(jQuery,document)</script>
+</body>
+</html>
